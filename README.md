@@ -7,5 +7,5 @@ the is my cloud-computing-project lession project
 here
 https://www.fpdf.org/en/download.php
 
-docker network create shared_network \n
+docker network create shared_network <br/>
 sudo docker-compose -f docker-compose.app.yml -f docker-compose.db.yml up --build
