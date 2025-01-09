@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+#    command: ["/bin/bash", "-c", "./install.sh && php -S 0.0.0.0:80"]
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile-db
+    ports:
+      - "3306:3306"
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: newpassword
+      MYSQL_DATABASE: notino
+      MYSQL_PASSWORD: "newpassword"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
